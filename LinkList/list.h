@@ -6,7 +6,7 @@ typedef struct LNode {
     struct LNode* next;
 } LNode, *LinkList;
 
-LinkList InitLinkList(LinkList* L);
+LinkList InitLinkList();
 
 void FreeLinkList(LinkList* L); 
 
