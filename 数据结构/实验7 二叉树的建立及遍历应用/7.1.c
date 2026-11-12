@@ -50,6 +50,18 @@ BiTree build(void)
     return T;
 }
 
+int Leaves(BiTree T, int *count)
+{
+    if (T) {
+        if (!T->lchild && !T->rchild) {
+            printf("%c ", T->data);
+            (*count)++;
+        }
+        Leaves(T->lchild, count);
+        Leaves(T->rchild, count);
+    }
+    return *count;
+}
 
 int main()
 {
@@ -64,5 +76,13 @@ int main()
     printf("后序遍历：");
     Last(T);
     printf("\n");
+
+    int count = 0;
+    printf("叶子结点：");
+    Leaves(T, &count);
+    printf("\n");
+    printf("叶子结点数：%d", count);
+    printf("\n");
+
     return 0;
 }
