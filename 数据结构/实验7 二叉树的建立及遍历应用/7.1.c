@@ -6,6 +6,11 @@ typedef struct BiTNode {
     struct BiTNode *lchild, *rchild;
 } BiTNode, *BiTree;
 
+typedef struct ListNode {
+    BiTNode data;
+    struct ListNode *next;
+} ListNode, *LinkList;
+
 void First(BiTree T)
 {
     if (T) {
@@ -63,6 +68,41 @@ int Leaves(BiTree T, int *count)
     return *count;
 }
 
+
+
+void Layer(BiTree T)
+{
+    LinkList head = (LinkList)malloc(sizeof(ListNode));
+    head->next = NULL;
+    LinkList Tnode = (LinkList)malloc(sizeof(ListNode));
+    head->next = Tnode;
+    Tnode->data = *T;
+    Tnode->next = NULL;
+    while(head->next != NULL) {
+        printf("%c ", head->next->data.data);
+        LinkList p = head->next;
+        head->next = head->next->next;
+        if (p->data.lchild) inlist(head, p->data.lchild);
+        if (p->data.rchild) inlist(head, p->data.rchild);
+        free(p);
+    }
+    return;
+}
+
+void inlist(LinkList head, BiTNode *T)
+{
+    while (head->next != NULL) {
+        head = head->next;
+    }
+    LinkList Tnode = (LinkList)malloc(sizeof(ListNode));
+    Tnode->data = *T;
+    Tnode->next = NULL;
+    head->next = Tnode;
+    return;
+}
+
+
+
 int main()
 {
     BiTree T;
@@ -83,6 +123,9 @@ int main()
     printf("\n");
     printf("叶子结点数：%d", count);
     printf("\n");
+
+    printf("层次遍历：");
+    Layer(T);
 
     return 0;
 }
