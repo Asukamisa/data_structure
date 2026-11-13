@@ -101,7 +101,57 @@ void inlist(LinkList head, BiTNode *T)
     return;
 }
 
+// 栈结构（存二叉树结点指针）
+#define MAXSIZE 100
+typedef struct {
+    BiTNode* data[MAXSIZE];
+    int top;
+} SqStack;
 
+// 栈初始化
+void InitStack(SqStack *s) {
+    s->top = -1;
+}
+
+// 判栈空
+int StackEmpty(SqStack *s) {
+    return s->top == -1;
+}
+
+// 入栈
+int Push(SqStack *s, BiTNode *p) {
+    if (s->top == MAXSIZE - 1)
+        return 0;
+    s->data[++s->top] = p;
+    return 1;
+}
+
+// 出栈
+int Pop(SqStack *s, BiTNode **p) {
+    if (StackEmpty(s))
+        return 0;
+    *p = s->data[s->top--];
+    return 1;
+}
+
+// 【核心：非递归中序遍历】
+void InOrderNonRec(BiTree T) {
+    SqStack st;
+    InitStack(&st);
+    BiTNode *p = T;
+    while (p != NULL || !StackEmpty(&st)) {
+        // 1. 一直往左走，沿途结点入栈
+        while (p != NULL) {
+            Push(&st, p);
+            p = p->lchild;
+        }
+        // 2. 左为空，弹出栈顶，访问
+        Pop(&st, &p);
+        printf("%d ", p->data);
+        // 3. 转向右子树
+        p = p->rchild;
+    }
+}
 
 int main()
 {
