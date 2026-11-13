@@ -147,7 +147,7 @@ void InOrderNonRec(BiTree T) {
         }
         // 2. 左为空，弹出栈顶，访问
         Pop(&st, &p);
-        printf("%d ", p->data);
+        printf("%c ", p->data);
         // 3. 转向右子树
         p = p->rchild;
     }
@@ -177,5 +177,8 @@ int main()
     printf("层序遍历：");
     Layer(T);
 
+    printf("\n");
+    printf("非递归中序遍历：");
+    InOrderNonRec(T);
     return 0;
 }
