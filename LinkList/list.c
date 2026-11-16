@@ -3,6 +3,14 @@
 
 int main(void){
     LinkList L = InitLinkList();
-    FreeLinkList(L);
+    printf("%d\n", ListLen(L));
+    FreeLinkList(&L);
+
+    printf("%d\n", ListLen(L));
+
+    L = InitLinkList();
+    printf("%d\n", ListLen(L));
+    system("pause");
     return 0;
 }
+

@@ -17,16 +17,20 @@ LinkList InitLinkList()
     L->next = NULL;
     return L;
 }
-void FreeLinkList(LinkList L){
-    LNode* p;
-    while (L) {
-        p = L;
-        L = L->next;
+
+void FreeLinkList(LinkList *L){
+    if (L == NULL || *L == NULL) return;
+    LNode* p = *L;
+    while (p) {
+        LNode *next = p->next;
         free(p);
+        p = next;
     }
+    *L = NULL;
 }
 
 void ClearLinkList(LinkList L){
+    if(!L) return;
     LNode* p;
     while (L->next) {
         p = L->next;
@@ -40,7 +44,14 @@ int ListEmpty(LinkList L){
 }
 
 int ListLen(LinkList L){
-    
+    if(!L) return -1;
+    LNode * p = L->next;
+    int len = 0;
+    while(p){
+        len++;
+        p = p->next;
+    }
+    return len;
 }
 
 ElemType GetElem(LinkList L, int i, int* e);
