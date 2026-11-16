@@ -54,7 +54,9 @@ int ListLen(LinkList L){
     return len;
 }
 
-ElemType GetElem(LinkList L, int i, int* e);
+ElemType GetElem(LinkList L, int i, int* e){
+    
+}
 
 void PutElem(LinkList L, int i, ElemType e);
 
