@@ -10,6 +10,7 @@ int main(void){
 
     L = InitLinkList();
     printf("%d\n", ListLen(L));
+    PutElem(L,1,1);
     system("pause");
     return 0;
 }

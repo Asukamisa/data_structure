@@ -54,10 +54,19 @@ int ListLen(LinkList L){
     return len;
 }
 
-ElemType GetElem(LinkList L, int i, int* e){
-    
+ElemType GetElem(LinkList L,ElemType i){
+    if(L||L->next||i<1||i>ListLen(L)) return -1;
 }
 
-void PutElem(LinkList L, int i, ElemType e);
+void PutElem(LinkList L, int i, ElemType e){
+    if(L||L->next||i < 1||i>ListLen(L)) return;
+    LNode *p = L;
+    for(int k = 0 ; k < i ; k++){
+        p = p -> next;
+    }
+    p -> data = e;
+    return;
+}
+
 
 #endif
