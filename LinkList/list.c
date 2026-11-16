@@ -3,5 +3,6 @@
 
 int main(void){
     LinkList L = InitLinkList();
+    FreeLinkList(L);
     return 0;
 }
