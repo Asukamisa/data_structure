@@ -72,6 +72,7 @@ int Leaves(BiTree T, int *count)
 
 void Layer(BiTree T)
 {
+    if (!T) { printf("空树\n"); return; }
     LinkList head = (LinkList)malloc(sizeof(ListNode));
     head->next = NULL;
     LinkList Tnode = (LinkList)malloc(sizeof(ListNode));
