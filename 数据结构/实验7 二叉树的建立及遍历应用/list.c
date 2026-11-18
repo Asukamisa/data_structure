@@ -1,17 +1,17 @@
-#include "list.h"
+#include "BiTree.h" 
+#include "List.h"
 #include <stdlib.h>
 
-int main(void){
-    LinkList L = InitLinkList();
-    printf("%d\n", ListLen(L));
-    FreeLinkList(&L);
 
-    printf("%d\n", ListLen(L));
 
-    L = InitLinkList();
-    printf("%d\n", ListLen(L));
-    PutElem(L,1,1);
-    system("pause");
-    return 0;
+void inlist(LinkList head, BiTNode *T)
+{
+    while (head->next != NULL) {
+        head = head->next;
+    }
+    LinkList Tnode = (LinkList)malloc(sizeof(ListNode));
+    Tnode->data = *T;
+    Tnode->next = NULL;
+    head->next = Tnode;
+    return;
 }
-
