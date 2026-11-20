@@ -90,9 +90,10 @@ void buildHTcode(HFTree *HT,int n,code* HTcode)
 }
 
 void printHFTree(HFTree *HT,int n){
-    printf("index     weight     parent     lchild     rchild\n");
+    printf("%-10s%-10s%-10s%-10s%-10s","index","weight","parent","lchild","rchild");
+    printf("\n");
     for(int i = 0 ; i < 2*n-1;i++){
-        printf("%d  %.2f  %d   %d  %d \n" ,i,HT->Node[i].weight,HT->Node[i].parent,HT->Node[i].lchild,HT->Node[i].rchild);
+        printf("%-10d%-10.2f%-10d%-10d%-10d\n" ,i,HT->Node[i].weight,HT->Node[i].parent,HT->Node[i].lchild,HT->Node[i].rchild);
     }
 
 }
@@ -101,7 +102,7 @@ void printHTcode(code* HTcode,char* str,int n){
     double wpl = 0;
     for(int i = 0; i < n; i++)
     {
-        printf("%c  %.2f  ", str[i], HTcode[i].weight);
+        printf("%-10c%-10.2f  ", str[i], HTcode[i].weight);
         for(int j = HTcode[i].start; j < n; j++)
             printf("%d", HTcode[i].bit[j]);
         printf("\n");
